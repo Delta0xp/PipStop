@@ -13,6 +13,6 @@ def navbar() -> rx.Component:
         rx.text(" | "),
         rx.link("Mentor", href="/", color="white"),
         spacing="4",
-        padding="1rem",
-        background_color="#222222"
+        padding="2rem",
+        # background_color="#222222"
     )

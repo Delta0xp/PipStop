@@ -18,7 +18,10 @@ def home() -> rx.Component:
             spacing="4",
             align="stretch"
         ),
-        background_color="#111111",
+        background_image="url('/image.png')",
+        background_size="cover",
+        background_position="center",
+        background_repeat="no-repeat",
         min_height="100vh",
         padding="0"
     )

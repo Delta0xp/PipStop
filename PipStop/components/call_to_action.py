@@ -21,8 +21,8 @@ def call_to_action() -> rx.Component:
             spacing="3"
 
         ),
-        background_color="#222222",
+        # background_color="#222222",
         padding_top="3rem",
-        padding_bottom="3rem",
+        # padding_bottom="3rem",
         
     )
