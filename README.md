@@ -111,5 +111,25 @@ By following this blueprint, you and your colleagues can systematically add new 
 If you need further assistance or have questions about more advanced features, feel free to ask!
 
 
+# Backend
+
+''' bash
+
+(site) PS C:\Users\mithe\Documents\Github\PipStop> uvicorn Backend.main:app --reload
+ --port 8000
+
+'''
 
 
+# Frpmtend
+
+''' bash
+
+(site) PS C:\Users\mithe\Documents\Github\PipStop> reflex run
+
+'''
+
+
+# Installation notes:
+
+## Make sure to install requests
