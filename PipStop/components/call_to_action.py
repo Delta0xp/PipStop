@@ -15,7 +15,8 @@ def call_to_action() -> rx.Component:
                 color_scheme="green",
                 size="4",
                 margin_top="1rem",
-                margin_left="3rem"
+                margin_left="3rem",
+                border_radius="0"
             ),
             spacing="3"
 
