@@ -1,5 +1,9 @@
 import reflex as rx
 
+def backend_message_component() -> rx.Component:
+    message = get_backend_message()
+    return rx.text(message, color="cyan")
+
 def hero() -> rx.Component:
     return rx.center(
         rx.vstack(
