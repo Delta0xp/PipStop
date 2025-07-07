@@ -8,9 +8,11 @@ def footer() -> rx.Component:
                 rx.link("Twitter", href="https://twitter.com", color="#AAAAAA"),
                 rx.link("LinkedIn", href="https://linkedin.com", color="#AAAAAA"),
                 rx.link("GitHub", href="https://github.com", color="#AAAAAA"),
-                spacing="4"
+                spacing="4",
+                margin_left="3rem"
             ),
-            spacing="2"
+            spacing="2",
+            margin_left="3rem"
         ),
         padding="2rem"
     )
