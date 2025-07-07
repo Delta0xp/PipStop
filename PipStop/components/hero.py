@@ -5,16 +5,18 @@ def hero() -> rx.Component:
         rx.vstack(
             rx.text(
                 "Empowering the Next Generation in Cloud, AI, Data & Automation",
-                font_size="2xl",
+                font_size="4xl",
                 font_weight="bold",
                 color="white",
-                text_align="center"
+                text_align="center",
+                text_shadow="0 0 4px #FFFFFF, 0 0 12px #FFFFFF"
             ),
             rx.text(
                 "Mentorship, Community, and Discussions — all in one place.",
                 font_size="md",
-                color="#AAAAAA",
-                text_align="center"
+                color="#FFFFFF",
+                text_align="center",
+                text_shadow="0 0 8px #FFFFFF, 0 0 16px #FFFFFF"
             ),
             rx.hstack(
                 rx.button(
