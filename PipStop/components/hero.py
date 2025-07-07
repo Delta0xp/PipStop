@@ -9,7 +9,7 @@ def hero() -> rx.Component:
                 font_weight="bold",
                 color="white",
                 text_align="center",
-                text_shadow="0 0 4px #FFFFFF, 0 0 12px #FFFFFF"
+                text_shadow="0 0 4px #FFFFFF, 0 0 8px #FFFFFF"
             ),
             rx.text(
                 "Mentorship, Community, and Discussions — all in one place.",
