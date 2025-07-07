@@ -22,10 +22,21 @@ def home() -> rx.Component:
                         text_align="center"
                     ),
                     rx.hstack(
-                        rx.button("Join the Community", color_scheme="pink", size="3"),
-                        rx.button("Become a Mentor", color_scheme="cyan", size="3"),
-                        spacing="4",
-                        padding_top="1rem"
+                        rx.button(
+                            "Join Community",
+                            color_scheme="pink",
+                            size="3",
+                            border_radius="0"
+                        ),
+                        rx.button(
+                            "Become Member",
+                            color_scheme="cyan",
+                            size="3",
+                            border_radius="0"
+                        ),
+                        spacing="0",
+                        padding_top="1rem",
+                        padding_left="6rem"
                     ),
                     spacing="3"
                 ),
@@ -116,8 +127,19 @@ def home() -> rx.Component:
             # Call-to-Action Banner
             rx.center(
                 rx.vstack(
-                    rx.text("Ready to Level Up Your Tech Journey?", font_size="lg", font_weight="bold", color="white", text_align="center"),
-                    rx.button("Get Started Now", color_scheme="green", size="4", margin_top="1rem"),
+                    rx.text(
+                        "Ready to Level Up Your Tech Journey?",
+                        font_size="lg",
+                        font_weight="bold",
+                        color="white",
+                        text_align="center"
+                    ),
+                    rx.button(
+                        "Get Started Now",
+                        color_scheme="green",
+                        size="4",
+                        margin_top="1rem"
+                    ),
                     spacing="3"
                 ),
                 background_color="#222222",
