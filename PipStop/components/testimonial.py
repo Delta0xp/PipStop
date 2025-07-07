@@ -15,7 +15,7 @@ def testimonials() -> rx.Component:
                 ),
                 rx.box(
                     rx.text("“The mentorship here accelerated my career like nothing else.”", color="#AAAAAA", font_style="italic"),
-                    rx.text("— Tio, AI Researcher", color="white", margin_top="0.5rem"),
+                    rx.text("— Tio, AI Scientist", color="white", margin_top="0.5rem"),
                     padding="1rem",
                     background_color="#1a1a1a",
                     border_radius="xl",
