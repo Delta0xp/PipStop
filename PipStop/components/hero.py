@@ -1,8 +1,9 @@
 import reflex as rx
 
-def backend_message_component() -> rx.Component:
-    message = get_backend_message()
-    return rx.text(message, color="cyan")
+class HeroState(rx.State):
+    def go_to_membership(self):
+        rx.toast("Redirecting to membership page...", duration=2000)
+        return rx.redirect("/membership") 
 
 def hero() -> rx.Component:
     return rx.center(
@@ -33,7 +34,8 @@ def hero() -> rx.Component:
                     "Become Member",
                     color_scheme="cyan",
                     size="3",
-                    border_radius="0"
+                    border_radius="0",
+                    on_click=HeroState.go_to_membership
                 ),
                 spacing="0",
                 padding_top="1rem",

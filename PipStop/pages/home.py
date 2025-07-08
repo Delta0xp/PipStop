@@ -15,7 +15,7 @@ def home() -> rx.Component:
             testimonials(),
             call_to_action(),
             footer(),
-            spacing="4",
+            spacing="4",  
             align="stretch"
         ),
         background_image="url('/image.png')",

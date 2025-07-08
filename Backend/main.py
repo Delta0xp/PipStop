@@ -1,8 +1,11 @@
 from fastapi import FastAPI
+from routes import auth, members
 
 app = FastAPI()
 
-@app.get("/api/TEST")
-async def read_root():
-    
-    return{"message":" piel"}
+app.include_router(auth.router)
+app.include_router(members.router)
+
+@app.get("/")
+async def root():
+    return {"message": "Backend running!"}
