@@ -5,13 +5,10 @@ from PipStop.components.feat import features
 from PipStop.components.testimonial import testimonials
 from PipStop.components.call_to_action import call_to_action
 from PipStop.components.footer import footer
-from PipStop.components.backend_message import backend_message_component
-
 
 def home() -> rx.Component:
     return rx.box(
         rx.vstack(
-            backend_message_component(),
             navbar(),
             hero(),
             features(),
