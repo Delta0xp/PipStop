@@ -9,6 +9,10 @@ models.Base.metadata.create_all(bind=database.engine)
 
 # Create FastAPI app
 app = FastAPI()
+@app.get("/")
+def read_root():
+    return{"message":"Halllo Sir, why are you looking here instead of at the actually pages you're allowed to --- Contact us for mentorship 😉 "}
+
 
 # Include routers
 app.include_router(auth.router)
