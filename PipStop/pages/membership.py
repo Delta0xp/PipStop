@@ -69,7 +69,7 @@ def membership_sign() -> rx.Component:
                         MembershipState.is_signup,
                         rx.vstack(
                             rx.text("Role", align_self="flex-start", color="white"),
-                            rx.select(["member", "mentor"], on_change=MembershipState.set_role, placeholder="Select role", width="300px"),
+                            rx.select(["Member", "Mentor"], on_change=MembershipState.set_role, placeholder="Select role", width="300px"),
                             spacing="1"
                         ),
                         rx.box()  # Empty when login
