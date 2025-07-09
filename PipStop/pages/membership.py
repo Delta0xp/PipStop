@@ -38,65 +38,72 @@ class MembershipState(rx.State):
                     self.message = f"Error: {response.json().get('detail', 'Login failed.')}"
         except Exception as e:
             self.message = f"Exception: {e}"
+            
+from PipStop.components.navbar import navbar
 
 def membership_sign() -> rx.Component:
-    return rx.center(
-        rx.box(
-            rx.vstack(
-                rx.text(
-                    rx.cond(MembershipState.is_signup, "Sign Up", "Login"),
-                    font_size="2xl",
-                    font_weight="bold",
-                    margin_bottom="1rem",
-                    color="white"
-                ),
+    return rx.box(  # acts as the outer container
+        navbar(),  # ✅ Always keep navbar first, OUTSIDE of center
+
+        rx.center(  # only center the form part
+            rx.box(
                 rx.vstack(
-                    rx.text("Email", align_self="flex-start", color="white"),
-                    rx.input(placeholder="Enter your email", type="text", on_change=MembershipState.set_email, width="300px"),
-                    spacing="1" 
-                ),
-                rx.vstack(
-                    rx.text("Password", align_self="flex-start", color="white"),
-                    rx.input(placeholder="Enter your password", type="password", on_change=MembershipState.set_password, width="300px"),
-                    spacing="1" 
-                ),
-                rx.cond(
-                    MembershipState.is_signup,
-                    rx.vstack(
-                        rx.text("Role", align_self="flex-start", color="white"),
-                        rx.select(["member", "mentor"], on_change=MembershipState.set_role, placeholder="Select role", width="300px"),
-                        spacing="1"
+                    rx.text(
+                        rx.cond(MembershipState.is_signup, "Sign Up", "Login"),
+                        font_size="2xl",
+                        font_weight="bold",
+                        margin_bottom="1rem",
+                        color="white"
                     ),
-                    rx.box()  # Empty when login
+                    rx.vstack(
+                        rx.text("Email", align_self="flex-start", color="white"),
+                        rx.input(placeholder="Enter your email", type="text", on_change=MembershipState.set_email, width="300px"),
+                        spacing="1" 
+                    ),
+                    rx.vstack(
+                        rx.text("Password", align_self="flex-start", color="white"),
+                        rx.input(placeholder="Enter your password", type="password", on_change=MembershipState.set_password, width="300px"),
+                        spacing="1" 
+                    ),
+                    rx.cond(
+                        MembershipState.is_signup,
+                        rx.vstack(
+                            rx.text("Role", align_self="flex-start", color="white"),
+                            rx.select(["member", "mentor"], on_change=MembershipState.set_role, placeholder="Select role", width="300px"),
+                            spacing="1"
+                        ),
+                        rx.box()  # Empty when login
+                    ),
+                    rx.button(
+                        rx.cond(MembershipState.is_signup, "Sign Up", "Login"),
+                        on_click=MembershipState.submit,
+                        color_scheme="pink",
+                        border_radius="0",
+                        width="100%",
+                        margin_top="1rem"
+                    ),
+                    rx.button(
+                        rx.cond(MembershipState.is_signup, "Switch to Login", "Switch to Sign Up"),
+                        on_click=MembershipState.toggle_mode,
+                        variant="ghost",
+                        width="100%",
+                        margin_top="0.5rem"
+                    ),
+                    rx.text(MembershipState.message, color="white"),
+                    spacing="2",
+                    align="center"
                 ),
-                rx.button(
-                    rx.cond(MembershipState.is_signup, "Sign Up", "Login"),
-                    on_click=MembershipState.submit,
-                    color_scheme="pink",
-                    border_radius="0",
-                    width="100%",
-                    margin_top="1rem"
-                ),
-                rx.button(
-                    rx.cond(MembershipState.is_signup, "Switch to Login", "Switch to Sign Up"),
-                    on_click=MembershipState.toggle_mode,
-                    variant="ghost",
-                    width="100%",
-                    margin_top="0.5rem"
-                ),
-                rx.text(MembershipState.message, color="white"),
-                spacing="2",
-                align="center"
+                padding="2rem",
+                background_image="url('/image.png')",
+                background_size="cover",
+                background_position="center",
+                background_repeat="no-repeat",
+                border_radius="md",
+                box_shadow="0 0 10px rgba(0,0,0,0.3)"
             ),
-            padding="2rem",
-            background_image="url('/image.png')",
-            background_size="cover",
-            background_position="center",
-            background_repeat="no-repeat",
-            border_radius="md",
-            box_shadow="0 0 10px rgba(0,0,0,0.3)"
+            padding="30vh",
         ),
-        background_image="url('/image.png')",
+        background_image="url('/image.png')",  # ✅ One global background
         background_size="cover",
         background_position="center",
         background_repeat="no-repeat",

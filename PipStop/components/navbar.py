@@ -25,6 +25,8 @@ def navbar() -> rx.Component:
         rx.link("Discusion", href="/discussion", color="white"),
         rx.text(" | "),
         rx.link("Mentor", href="/mentor", color="white"),
+        rx.text(" | "),
+        rx.link("Membership",href="/membership",color="white"),
         spacing="4",
         padding="2rem",
         # background_color="#222222"
