@@ -11,7 +11,7 @@ def discussion_section() -> rx.Component:
             ),
             rx.button(
                 "Apply Now",
-                color_scheme="red",
+                color_scheme="pink",
                 size="3",
                 margin_top="1rem",
                 border_radius="0"
