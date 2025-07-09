@@ -89,7 +89,10 @@ def membership_sign() -> rx.Component:
                 align="center"
             ),
             padding="2rem",
-            background_color="#222222",
+            background_image="url('/image.png')",
+            background_size="cover",
+            background_position="center",
+            background_repeat="no-repeat",
             border_radius="md",
             box_shadow="0 0 10px rgba(0,0,0,0.3)"
         ),
