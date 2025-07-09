@@ -93,7 +93,12 @@ def membership_sign() -> rx.Component:
             border_radius="md",
             box_shadow="0 0 10px rgba(0,0,0,0.3)"
         ),
-        padding_top="5rem"
+        background_image="url('/image.png')",
+        background_size="cover",
+        background_position="center",
+        background_repeat="no-repeat",
+        min_height="100vh",
+        padding="0"
     )
 
 def page() -> rx.Component:
