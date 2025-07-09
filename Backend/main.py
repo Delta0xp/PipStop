@@ -22,6 +22,7 @@ def read_root():
     <html>
         <head>
             <title>PipStop API</title>
+            <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
             <style>
                 body {
                     background-image: url('/assets/image.png');
