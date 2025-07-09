@@ -80,14 +80,23 @@ def membership_sign() -> rx.Component:
                         color_scheme="pink",
                         border_radius="0",
                         width="100%",
-                        margin_top="1rem"
+                        margin_top="1rem",
+                        cursor="pointer",
                     ),
                     rx.button(
                         rx.cond(MembershipState.is_signup, "Switch to Login", "Switch to Sign Up"),
                         on_click=MembershipState.toggle_mode,
                         variant="ghost",
                         width="100%",
-                        margin_top="0.5rem"
+                        margin_top="0.5rem",
+                        cursor="pointer",
+                        style={
+                            "outline": "none",
+                            "boxShadow": "none",
+                            "background": "transparent",            # Remove hover fill
+                        },
+                        _hover={"background": "transparent"},       # <- Remove hover blue box
+                        _focus={"background": "transparent"},       # <- Remove focus blue box
                     ),
                     rx.text(MembershipState.message, color="white"),
                     spacing="2",
