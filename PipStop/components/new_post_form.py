@@ -3,12 +3,12 @@ from PipStop.state.community_state import CommunityState
 
 def new_post_form():
     return rx.vstack(
-        rx.upload("Select Image", id="img_upload"),
+        rx.upload("Select Image (optional)", id="file_upload"),
         rx.button(
             "Upload Image",
-            on_click=CommunityState.handle_upload(rx.upload_files(upload_id="img_upload")),
+            on_click=CommunityState.handle_upload(rx.upload_files(upload_id="file_upload")),
             color_scheme="blue",
-            size="2"
+            size="2",
         ),
         rx.form(
             rx.vstack(
@@ -18,7 +18,7 @@ def new_post_form():
             ),
             on_submit=CommunityState.add_post,
             reset_on_submit=True,
-            spacing="3"
+            spacing="3",
         ),
-        spacing="4"
+        spacing="4",
     )
