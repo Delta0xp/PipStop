@@ -1,91 +1,69 @@
+# PipStop/pages/membership.py
+
 import reflex as rx
-import requests
-
-class MembershipState(rx.State):
-    email: str
-    password: str
-    role: str = "member"
-
-    message: str = ""
-    is_signup: bool = True
-    token: str = ""
-
-    def toggle_mode(self):
-        self.is_signup = not self.is_signup
-        self.message = ""
-
-    def submit(self):
-        try:
-            payload = {
-                "email": self.email,
-                "password": self.password,
-            }
-
-            if self.is_signup:
-                payload["role"] = self.role
-                response = requests.post("http://127.0.0.1:8000/api/auth/signup", json=payload)
-                if response.status_code == 200:
-                    self.message = "Signup successful! You can now log in."
-                else:
-                    self.message = f"Error: {response.json().get('detail', 'Signup failed.')}"
-            else:
-                response = requests.post("http://127.0.0.1:8000/api/auth/login", json=payload)
-                if response.status_code == 200:
-                    data = response.json()
-                    self.token = data["access_token"]
-                    self.message = "Login successful!"
-                else:
-                    self.message = f"Error: {response.json().get('detail', 'Login failed.')}"
-        except Exception as e:
-            self.message = f"Exception: {e}"
-            
 from PipStop.components.navbar import navbar
 
-def membership_sign() -> rx.Component:
-    return rx.box(  # acts as the outer container
-        navbar(),  # ✅ Always keep navbar first, OUTSIDE of center
+class ViewState(rx.State):
+    is_signup: bool = True
 
-        rx.center(  # only center the form part
+    def toggle_view(self):
+        self.is_signup = not self.is_signup
+
+def membership_sign() -> rx.Component:
+    return rx.box(
+        navbar(),
+
+        rx.center(
             rx.box(
                 rx.vstack(
+                    # Title
                     rx.text(
-                        rx.cond(MembershipState.is_signup, "Sign Up", "Login"),
+                        rx.cond(ViewState.is_signup, "Sign Up", "Login"),
                         font_size="2xl",
                         font_weight="bold",
                         margin_bottom="1rem",
                         color="white"
                     ),
+
+                    # Email input
                     rx.vstack(
                         rx.text("Email", align_self="flex-start", color="white"),
-                        rx.input(placeholder="Enter your email", type="text", on_change=MembershipState.set_email, width="300px"),
-                        spacing="1" 
+                        rx.input(placeholder="Enter your email", type="text", width="300px"),
+                        spacing="1"
                     ),
+
+                    # Password input
                     rx.vstack(
                         rx.text("Password", align_self="flex-start", color="white"),
-                        rx.input(placeholder="Enter your password", type="password", on_change=MembershipState.set_password, width="300px"),
-                        spacing="1" 
+                        rx.input(placeholder="Enter your password", type="password", width="300px"),
+                        spacing="1"
                     ),
+
+                    # Only show Role dropdown on signup
                     rx.cond(
-                        MembershipState.is_signup,
+                        ViewState.is_signup,
                         rx.vstack(
                             rx.text("Role", align_self="flex-start", color="white"),
-                            rx.select(["Member", "Mentor"], on_change=MembershipState.set_role, placeholder="Select role", width="300px"),
+                            rx.select(["Member", "Mentor"], placeholder="Select role", width="300px"),
                             spacing="1"
                         ),
-                        rx.box()  # Empty when login
+                        rx.box()  # empty if login
                     ),
+
+                    # Submit button (no logic yet)
                     rx.button(
-                        rx.cond(MembershipState.is_signup, "Sign Up", "Login"),
-                        on_click=MembershipState.submit,
+                        rx.cond(ViewState.is_signup, "Sign Up", "Login"),
                         color_scheme="pink",
                         border_radius="0",
                         width="100%",
                         margin_top="1rem",
                         cursor="pointer",
                     ),
+
+                    # Toggle button
                     rx.button(
-                        rx.cond(MembershipState.is_signup, "Switch to Login", "Switch to Sign Up"),
-                        on_click=MembershipState.toggle_mode,
+                        rx.cond(ViewState.is_signup, "Switch to Login", "Switch to Sign Up"),
+                        on_click=ViewState.toggle_view,
                         variant="ghost",
                         width="100%",
                         margin_top="0.5rem",
@@ -93,12 +71,12 @@ def membership_sign() -> rx.Component:
                         style={
                             "outline": "none",
                             "boxShadow": "none",
-                            "background": "transparent",            # Remove hover fill
+                            "background": "transparent",
                         },
-                        _hover={"background": "transparent"},       # <- Remove hover blue box
-                        _focus={"background": "transparent"},       # <- Remove focus blue box
+                        _hover={"background": "transparent"},
+                        _focus={"background": "transparent"},
                     ),
-                    rx.text(MembershipState.message, color="white"),
+
                     spacing="2",
                     align="center"
                 ),
@@ -112,7 +90,8 @@ def membership_sign() -> rx.Component:
             ),
             padding="30vh",
         ),
-        background_image="url('/image.png')",  # ✅ One global background
+
+        background_image="url('/image.png')",
         background_size="cover",
         background_position="center",
         background_repeat="no-repeat",
