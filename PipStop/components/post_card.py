@@ -1,17 +1,19 @@
 import reflex as rx
 
-def post_card(title: str, body: str, author: str) -> rx.Component:
+def post_card(title: str, body: str, image: rx.Var | None, author: str = "Tio"):
     return rx.card(
         rx.vstack(
-            rx.hstack(
-                rx.text(title, size="4", weight="bold"),  # ✅ fixed size
-                rx.spacer(),
-                rx.text(f"by {author}", size="2", color="gray"),  # ✅ fixed size
-            ),
-            rx.text(body, size="2", margin_y="0.5em"),  # ✅ fixed size
+            rx.text(title, size="4", weight="bold"),
+            rx.text(f"by {author}", size="2", color="gray"),
+            rx.text(body, size="2", margin_top="1"),
+            rx.cond(
+                image != None,
+                rx.image(src=rx.get_upload_url(image), width="200px", margin_top="2"),
+                None
+            )
         ),
-        padding="1.5em",
+        padding="4",
         shadow="md",
-        border_radius="xl",
-        margin_y="1em"
+        border_radius="lg",
+        margin_y="4"
     )
