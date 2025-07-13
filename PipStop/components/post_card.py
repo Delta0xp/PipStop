@@ -1,19 +1,31 @@
 import reflex as rx
 
-def post_card(title: str, body: str, image: rx.Var | None, author: str = "Tio"):
-    return rx.card(
-        rx.vstack(
-            rx.text(title, size="4", weight="bold"),
-            rx.text(f"by {author}", size="2", color="gray"),
-            rx.text(body, size="2", margin_top="1"),
-            rx.cond(
-                image != None,
-                rx.image(src=rx.get_upload_url(image), width="200px", margin_top="2"),
-                None
-            )
+def post_card(title: str, body: str, image: str = "", author: str = "Anonymous") -> rx.Component:
+    return rx.box(
+        rx.card(
+            rx.vstack(
+                rx.heading(title, size="5", color="white"),
+                rx.text(f"by {author}", size="1", color="gray"),
+                rx.text(body, color="white", size="3"),
+                rx.cond(
+                    image != "",
+                    rx.image(
+                        src=image,
+                        width="100%",
+                        height="auto",
+                        border_radius="lg",
+                        margin_top="4px"
+                    )
+                )
+            ),
+            padding="4",
+            background_color="rgba(255,255,255,0.05)",
+            border_radius="xl",
+            shadow="lg",
+            width="100%",
         ),
-        padding="4",
-        shadow="md",
-        border_radius="lg",
-        margin_y="4"
+        width="100%",
+        max_width="800px",
+        margin_y="4",
+        align_self="center"
     )
