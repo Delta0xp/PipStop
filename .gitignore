@@ -52,7 +52,5 @@ yarn-error.log
 
 # Log files
 *.log
-/frontend
-/frontend
 frontend/package.json
 frontend/package-lock.json

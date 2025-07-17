@@ -1,0 +1,9 @@
+/* src/pages/Home.css */
+
+.home-container {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 2rem;
+}
